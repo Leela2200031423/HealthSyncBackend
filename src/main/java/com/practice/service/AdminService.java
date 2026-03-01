@@ -4,6 +4,6 @@ import com.practice.model.Admin;
 
 public interface AdminService {
 
-    Admin login(String email, String password);
+    String verify(String email, String password);
 
 }

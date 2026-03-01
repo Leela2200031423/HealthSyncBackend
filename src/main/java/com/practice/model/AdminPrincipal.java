@@ -11,12 +11,14 @@ import java.util.Collections;
 public class AdminPrincipal implements UserDetails {
 
     private Admin admin;
+
+
     public AdminPrincipal(Admin admin){
         this.admin = admin;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ADMIN"));
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override

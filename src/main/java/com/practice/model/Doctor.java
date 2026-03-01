@@ -25,7 +25,7 @@ public class Doctor {
 	private String email;
 	@Column(nullable = false, length = 20)
 	private String phno;
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 255)
 	private String password;
 	public int getId() {
 		return id;

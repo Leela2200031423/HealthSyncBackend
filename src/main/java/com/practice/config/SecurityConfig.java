@@ -1,5 +1,6 @@
 package com.practice.config;
 
+import com.practice.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ import java.util.List;
 public class SecurityConfig {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private MyUserDetailsService myUserDetailsService;
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -72,7 +73,7 @@ public class SecurityConfig {
 
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(myUserDetailsService);
 		provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
 		return provider;
 	}

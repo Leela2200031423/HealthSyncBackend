@@ -20,9 +20,12 @@ public class AdminController {
 
     // ✅ Admin Login API
     @PostMapping("/login")
-    public Admin login(@RequestBody Admin admin) {
-        return adminService.login(admin.getEmail(), admin.getPassword());
+    public String login(@RequestParam String email,@RequestParam String password) {
+        return adminService.verify(email, password);
     }
+
+
+
     @PostMapping("/adddoctor")
     public Doctor addDoctor(@RequestBody Doctor d) {
 

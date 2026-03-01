@@ -13,7 +13,7 @@ public class Admin {
 	private int id;
 	@Column(nullable = false, length = 50)
 	private String email;
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 255)
 	private String password;
 	public int getId() {
 		return id;
