@@ -7,20 +7,23 @@ import com.practice.model.Patient;
 import com.practice.service.PatientService;
 
 @RestController
-@RequestMapping("/hel")
+@RequestMapping("/patient")
 public class PatientController {
 
     @Autowired
     private PatientService patientService;
 
-    @PostMapping("/patientreg")
+    @PostMapping("/register")
     public Patient savePatient(@RequestBody Patient p) {
         return patientService.savePatient(p);
     }
 
-
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello Working..";
+    }
     @PostMapping("/login")
-    public Patient login(@RequestBody Patient p) {
-        return patientService.login(p.getEmail(), p.getPassword());
+    public String login(@RequestParam String email, @RequestParam String password) {
+        return patientService.verify(email, password);
     }
 }

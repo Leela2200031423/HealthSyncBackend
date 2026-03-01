@@ -15,7 +15,7 @@ public class DoctorController {
 
     // ✅ Doctor Login API
     @PostMapping("/login")
-    public Doctor login(@RequestBody Doctor doctor) {
-        return doctorService.login(doctor.getEmail(), doctor.getPassword());
+    public String login(@RequestParam String email,@RequestParam String password) {
+        return doctorService.verify(email,password);
     }
 }

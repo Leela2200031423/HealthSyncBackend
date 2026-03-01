@@ -25,6 +25,10 @@ public class Patient {
 	private String phno;
 	@Column(nullable = false, length = 20)
 	private String password;
+	
+	public Patient() {
+		
+	}
 	public int getId() {
 		return id;
 	}

@@ -1,6 +1,10 @@
 package com.practice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.practice.model.Doctor;
@@ -12,20 +16,27 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     private DoctorRepo doctorRepo;
 
+    @Autowired
+    private JWTService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     @Override
     public Doctor saveDoctor(Doctor doctor) {
         return doctorRepo.save(doctor);
     }
 
     @Override
-    public Doctor login(String email, String password) {
+    public String verify(String email, String password) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
-        Doctor doctor = doctorRepo.findByEmail(email);
-
-        if (doctor != null && doctor.getPassword().equals(password)) {
-            return doctor;
+        if(authentication.isAuthenticated()){
+            return jwtService.generateToken(email);
         }
-
-        return null;
+        return "FAiled";
     }
 }

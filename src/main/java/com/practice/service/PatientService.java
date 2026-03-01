@@ -6,5 +6,5 @@ public interface PatientService {
 
     Patient savePatient(Patient p);
 
-    Patient login(String email, String password);
+    String verify(String email, String password);
 }
