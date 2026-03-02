@@ -27,6 +27,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor saveDoctor(Doctor doctor) {
+        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         return doctorRepo.save(doctor);
     }
 

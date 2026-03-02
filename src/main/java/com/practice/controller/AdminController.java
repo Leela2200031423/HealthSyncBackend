@@ -23,7 +23,7 @@ public class AdminController {
     public String login(@RequestParam String email,@RequestParam String password) {
         return adminService.verify(email, password);
     }
-
+    
 
 
     @PostMapping("/adddoctor")

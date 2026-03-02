@@ -29,20 +29,20 @@ public class MyUserDetailsService implements UserDetailsService{
 
 		Admin admin = adminRepo.findByEmail(email);
 		if(admin != null){
-			System.out.println("Admin Not Found");
+			System.out.println("Admin Found");
 			return new AdminPrincipal(admin);
 		}
 
 		Doctor doctor = doctorRepo.findByEmail(email);
 		if(doctor != null){
-			System.out.println("Doctor Not Found");
+			System.out.println("Doctor Found");
 			return new DoctorPrincipal(doctor);
 		}
 
 
 		Patient patient = patientRepo.findByEmail(email);
-		if(patient == null) {
-			System.out.println("User Not Found");
+		if(patient != null) {
+			System.out.println("User Found");
 			throw new UsernameNotFoundException(email + "Patient Not Found");
 		}
 		return new PatientPrincipal(patient);
