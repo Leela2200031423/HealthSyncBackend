@@ -1,10 +1,14 @@
 package com.practice.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +31,8 @@ public class Doctor {
 	private String phno;
 	@Column(nullable = false, length = 255)
 	private String password;
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 	public int getId() {
 		return id;
 	}
@@ -75,10 +81,18 @@ public class Doctor {
 	public void setSpecialized(String specialized) {
 		this.specialized = specialized;
 	}
+	
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", specialized="
-				+ specialized + ", email=" + email + ", phno=" + phno + ", password=" + password + "]";
+				+ specialized + ", email=" + email + ", phno=" + phno + ", password=" + password + ", appointments="
+				+ appointments + "]";
 	}
 	
 }
