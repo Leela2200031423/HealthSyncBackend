@@ -40,8 +40,10 @@ public class SecurityConfig {
 				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 		     .csrf(customizer -> customizer.disable())
 		     .authorizeHttpRequests(request -> request
-					 .requestMatchers("/patient/register","/patient/login","/doctor/login","/admin/login")
-					 .permitAll()
+					 .requestMatchers("/patient/register","/patient/login","/doctor/login","/admin/login").permitAll()
+					 .requestMatchers("/patient/**").authenticated()
+					 .requestMatchers("/doctor/**").authenticated()
+					 .requestMatchers("/admin/**").authenticated()
 					 .anyRequest().authenticated())
 		     .httpBasic(Customizer.withDefaults())// this is for rest api access
 		     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

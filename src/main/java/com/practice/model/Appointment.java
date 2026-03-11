@@ -95,10 +95,10 @@ public class Appointment {
         this.status = status;
     }
 
-	@Override
-	public String toString() {
-		return "Appointment [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", issue=" + issue
-				+ ", appointmentDate=" + appointmentDate + ", appointmentTime=" + appointmentTime + ", status=" + status
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Appointment [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", issue=" + issue
+//				+ ", appointmentDate=" + appointmentDate + ", appointmentTime=" + appointmentTime + ", status=" + status
+//				+ "]";
+//	}
 }

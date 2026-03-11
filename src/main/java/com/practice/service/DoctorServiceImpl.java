@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.practice.model.Doctor;
 import com.practice.repository.DoctorRepo;
 
+import java.util.List;
+
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
@@ -39,5 +41,10 @@ public class DoctorServiceImpl implements DoctorService {
             return jwtService.generateToken(email);
         }
         return "FAiled";
+    }
+
+    @Override
+    public List<Doctor> getAllDoctors() {
+        return doctorRepo.findAll();
     }
 }

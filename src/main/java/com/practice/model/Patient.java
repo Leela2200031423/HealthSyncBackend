@@ -27,7 +27,7 @@ public class Patient {
 	private String email;
 	@Column(nullable = false, length = 20)
 	private String phno;
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 255)
 	private String password;
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
