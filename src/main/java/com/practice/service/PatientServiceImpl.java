@@ -40,4 +40,9 @@ public class PatientServiceImpl implements PatientService {
         }
         return "FAiled";
     }
+
+    @Override
+    public Patient getPatientByUsername(String username) {
+        return patientRepo.findByEmail(username);
+    }
 }

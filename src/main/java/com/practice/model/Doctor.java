@@ -2,6 +2,7 @@ package com.practice.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,8 +31,10 @@ public class Doctor {
 	@Column(nullable = false, length = 20)
 	private String phno;
 	@Column(nullable = false, length = 255)
+	@JsonIgnore
 	private String password;
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	@JsonIgnore
     private List<Appointment> appointments;
 	public int getId() {
 		return id;

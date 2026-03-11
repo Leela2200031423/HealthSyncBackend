@@ -2,7 +2,9 @@ package com.practice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.practice.model.Patient;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PatientRepo extends JpaRepository<Patient, Integer> {
 
     Patient findByEmailAndPassword(String email, String password);

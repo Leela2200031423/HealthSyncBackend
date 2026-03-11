@@ -7,4 +7,6 @@ public interface PatientService {
     Patient savePatient(Patient p);
 
     String verify(String email, String password);
+
+    Patient getPatientByUsername(String username);
 }

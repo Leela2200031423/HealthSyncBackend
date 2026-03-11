@@ -42,10 +42,10 @@ public class MyUserDetailsService implements UserDetailsService{
 
 		Patient patient = patientRepo.findByEmail(email);
 		if(patient != null) {
-			System.out.println("User Found");
-			throw new UsernameNotFoundException(email + "Patient Not Found");
+			System.out.println("Patient Found");
+			return new PatientPrincipal(patient);
 		}
-		return new PatientPrincipal(patient);
+		throw new UsernameNotFoundException(email + "Not Found");
 	}
 
 }
