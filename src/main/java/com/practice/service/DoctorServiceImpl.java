@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.practice.model.Doctor;
 import com.practice.repository.DoctorRepo;
 
+import javax.print.Doc;
 import java.util.List;
 
 @Service
@@ -38,7 +39,8 @@ public class DoctorServiceImpl implements DoctorService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
         if(authentication.isAuthenticated()){
-            return jwtService.generateToken(email);
+            Doctor doctor = doctorRepo.findByEmail(email);
+            return jwtService.generateToken(email,"ROLE_DOCTOR",doctor.getId());
         }
         return "FAiled";
     }

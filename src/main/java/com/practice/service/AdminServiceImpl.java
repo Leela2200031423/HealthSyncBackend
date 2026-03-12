@@ -70,7 +70,8 @@ public class AdminServiceImpl implements AdminService {
             logger.info("Authentication successful: {}", authentication.isAuthenticated());
 
             if (authentication.isAuthenticated()) {
-                String token = jwtService.generateToken(email);
+                Admin admin1  = adminRepo.findByEmail(email);
+                String token = jwtService.generateToken(email,"ROLE_ADMIN",admin1.getId());
                 logger.info("JWT token generated successfully");
                 return token;
             }

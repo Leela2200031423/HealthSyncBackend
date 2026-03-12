@@ -29,9 +29,10 @@ public class JWTService {
         }
     }
 
-    public String generateToken(String username) {
-        Map<String, Objects>    claims = new HashMap<>();
-
+    public String generateToken(String username,String role,int id) {
+        Map<String, Object>    claims = new HashMap<>();
+        claims.put("role",role);
+        claims.put("id",id);
         return Jwts.builder()
                 .claims()
                 .add(claims)
@@ -41,6 +42,9 @@ public class JWTService {
                 .and()
                 .signWith(getKey())
                 .compact();
+    }
+    public int extractId(String token){
+        return extractAllClaims(token).get("id",Integer.class);
     }
 
     public SecretKey getKey(){
