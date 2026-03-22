@@ -15,5 +15,6 @@ public interface PatientService {
     Patient getProfile(int patientId);
 
     Patient updateProfile(int patientId,Patient patient);
-    //List<Appointment> getAllAppointments();
+
+    List<Appointment> getAppointmentByPatientId(int patientId);
 }

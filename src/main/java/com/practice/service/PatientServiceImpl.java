@@ -1,6 +1,7 @@
 package com.practice.service;
 
 import com.practice.model.Appointment;
+import com.practice.repository.AppointmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +20,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Autowired
     private PatientRepo patientRepo;
-    
+
+    @Autowired
+    private AppointmentRepo appointmentRepo;
+
     @Autowired
     private JWTService jwtService;
     
@@ -74,6 +78,12 @@ public String verify(String email, String password) {
         existingPatient.setGender(patient.getGender());
         existingPatient.setPhno(patient.getPhno());
         return patientRepo.save(existingPatient);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentByPatientId(int patientId) {
+        List<Appointment> myappointments = appointmentRepo.findByPatientId(patientId);
+        return myappointments;
     }
 
 //    @Override

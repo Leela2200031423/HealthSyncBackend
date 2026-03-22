@@ -115,6 +115,12 @@ public class PatientController {
         }
     }
 
+    @GetMapping("/myappointments")
+    public List<Appointment> getAppointmentsByPatientId(@RequestHeader("Authorization") String authHeader){
+        String token = authHeader.substring(7);
+        int patientId = jwtService.extractId(token);
+        return patientService.getAppointmentByPatientId(patientId);
+    }
 
 
     //@GetMapping("/getappointments")
