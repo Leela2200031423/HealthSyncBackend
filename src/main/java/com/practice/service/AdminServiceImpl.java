@@ -1,5 +1,7 @@
 package com.practice.service;
 
+import com.practice.model.Doctor;
+import com.practice.repository.DoctorRepo;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import com.practice.model.Admin;
 import com.practice.repository.AdminRepo;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -25,6 +29,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private DoctorRepo doctorRepo;
+
     @Autowired
     private JWTService jwtService;
 
@@ -85,4 +93,9 @@ public class AdminServiceImpl implements AdminService {
 
         throw new RuntimeException("Authentication failed");
     }
+
+    @Override
+    public List<Doctor> getAllDoctors() {
+        return doctorRepo.findAll();
     }
+}

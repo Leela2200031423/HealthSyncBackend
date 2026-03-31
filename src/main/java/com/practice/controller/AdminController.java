@@ -8,6 +8,8 @@ import com.practice.model.Doctor;
 import com.practice.service.AdminService;
 import com.practice.service.DoctorService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -23,12 +25,16 @@ public class AdminController {
     public String login(@RequestParam String email,@RequestParam String password) {
         return adminService.verify(email, password);
     }
-    
 
 
     @PostMapping("/adddoctor")
     public Doctor addDoctor(@RequestBody Doctor d) {
 
     	return doctorService.saveDoctor(d);
+    }
+
+    @GetMapping("/getalldoctors")
+    public List<Doctor> getAllDoctors(){
+        return doctorService.getAllDoctors();
     }
 }
