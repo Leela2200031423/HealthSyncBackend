@@ -10,4 +10,6 @@ public interface DoctorService {
 
     String verify(String email, String password);
     List<Doctor> getAllDoctors();
+
+    Doctor getProfile(int doctorId);
 }
